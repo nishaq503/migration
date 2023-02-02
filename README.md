@@ -89,13 +89,38 @@ Notes on PolusAI migration of docker containers
 | label-to-vector-plugin                    | yes    | no   | no     | no  |         | 2.1.9 |
 | vector-to-label-plugin                    | yes    | no   | no     | no  |         | 2.1.9 |
 
-## Permissions:
+## Docker Build Errors:
 
-polusai/feature-eval-plugin:0.2.2
+* tiledtiff-converter-plugin
+* bleed-through-estimation-plugin
+* aics-classic-seg-plugin
+* notebook-plugin
 
-## Definitely need testing:
+## Testing:
 
+* basic-flatfield-correction
 * imaris-parser-plugin
+* cell-nuclei-segmentation
+* smp-training (Hamdah)
+* zo1-segmentation
+* apply-flatfield
+* ftl-label (Ben)
+* image-registration-plugin
+* intensity-projection-plugin
+* montage-plugin (Ben)
+* montage-plugin
+* stack-z-slice
+* csv-merger-plugin (Nick)
+* csv-collection-merger
+
+## Repo Creations:
+
+* fcs-to-csv-converter-plugin
+* feather-to-tabular-plugin
+* ome-zarr-converter-plugin
+* tabular-to-feather-plugin
+
+## Permissions:
 
 ## Notes
 
