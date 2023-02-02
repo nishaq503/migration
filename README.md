@@ -126,6 +126,13 @@ Notes on PolusAI migration of docker containers
 * imagej-threshold-minerror-plugin
 * imagej-threshold-minimum-plugin
 * imagej-threshold-otsu-plugin
+* imagej-threshold-renyientropy-plugin
+* imagej-threshold-rosin-plugin
+* imagej-threshold-shanbhag-plugin
+* imagej-threshold-yen-plugin
+* imagej-deconvolve-richardsonlucy-plugin
+* imagej-filter-addpoissonnoise-plugin
+* imagej-image-integral-plugin
 
 ## Notes
 
