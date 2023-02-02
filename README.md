@@ -98,29 +98,34 @@ Notes on PolusAI migration of docker containers
 
 ## Testing:
 
-* basic-flatfield-correction
+* basic-flatfield-correction (Najib)
+* apply-flatfield (Najib)
+* smp-training (Hamdah)
+* ftl-label (Ben, Najib)
+* montage-plugin (Ben)
+* zo1-segmentation (Ben)
+* csv-merger-plugin (Nick)
+* csv-collection-merger (Nick)
 * imaris-parser-plugin
 * cell-nuclei-segmentation
-* smp-training (Hamdah)
-* zo1-segmentation
-* apply-flatfield
-* ftl-label (Ben)
 * image-registration-plugin
 * intensity-projection-plugin
-* montage-plugin (Ben)
-* montage-plugin
 * stack-z-slice
-* csv-merger-plugin (Nick)
-* csv-collection-merger
 
 ## Repo Creations:
 
 * fcs-to-csv-converter-plugin
+
+## Permissions:
+
 * feather-to-tabular-plugin
 * ome-zarr-converter-plugin
 * tabular-to-feather-plugin
-
-## Permissions:
+* imagej-threshold-intermodes-plugin
+* imagej-threshold-maxlikelihood-plugin
+* imagej-threshold-minerror-plugin
+* imagej-threshold-minimum-plugin
+* imagej-threshold-otsu-plugin
 
 ## Notes
 
