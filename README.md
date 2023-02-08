@@ -2,141 +2,102 @@
 
 Notes on PolusAI migration of docker containers
 
-## Plugins Status
+## General Notes
 
-| Name                                      | Builds | Repo | Pushed | PR  | Contact | bfio  |
-| ----------------------------------------- | ------ | ---- | ------ | --- | ------- | ----- |
-| feature-subsetting-plugin                 | yes    | no   | no     | no  |         | 2.1.9 |
-| hdbscan-clustering-plugin                 | yes    | no   | no     | no  |         | 2.1.9 |
-| k-means-clustering-plugin                 |        | no   |        | yes | Nina    | 2.1.9 |
-| outlier-removal-plugin                    | yes    | no   | no     | no  |         | 2.1.9 |
-| csv-statistics-plugin                     |        | yes  |        | yes | Ben     | 2.1.9 |
-| feature-eval-plugin                       | yes    | yes  | yes    | no  |         | 2.1.9 |
-| feature-extraction-plugin                 | yes    | no   | no     | no  |         | 2.0.4 |
-| imagenet-model-featurization-plugin       | yes    | no   | no     | no  |         | 2.0.0 |
-| object-spectral-featurization-plugin      | yes    | no   | no     | no  |         | 2.1.6 |
-| czi-extract-plugin                        | yes    | no   | no     | no  |         | 2.1.9 |
-| feather-to-tabular-plugin                 | yes    | yes  | no     | no  |         | 2.1.9 |
-| imaris-parser-plugin                      | yes    | no   | no     | no  |         | 2.1.9 |
-| multichannel-tiff-plugin                  | yes    | no   | no     | no  |         | 1.3.6 |
-| ome-zarr-converter-plugin                 | yes    | yes  | no     | no  |         | 2.1.9 |
-| tabular-to-feather-plugin                 | yes    | yes  | no     | no  |         | 2.1.9 |
-| tiledtiff-converter-plugin                | nope!  | yes  | no     | no  | Nick    | 2.1.9 |
-| binary-ops-plugin                         | yes    | yes  | yes    | no  |         | 2.1.9 |
-| basic-flatfield-correction-plugin         | yes    | yes  | yes    | no  |         | 2.1.9 |
-| bleed-through-estimation-plugin           | yes    | yes  | no     | no  |         | 2.1.9 |
-| aics-classic-seg-plugin                   | no     | no   | no     | no  |         | 1.3.6 |
-| cell-nuclei-segmentation-plugin           | yes    | no   | no     | no  |         | 1.0.7 |
-| zo1-segmentation-plugin                   | yes    | yes  | yes    | no  |         | 2.1.9 |
-| apply-flatfield-plugin                    | yes    | yes  | no     | yes | Najib   | 2.1.9 |
-| autocropping-plugin                       | yes    | no   | no     | no  |         | 2.1.9 |
-| ftl-label-plugin                          |        | yes  |        |     |         | 2.1.9 |
-| image-assembler-plugin                    |        | yes  |        |     |         |       |
-| image-calculator-plugin                   |        | yes  |        |     |         |       |
-| image-registration-plugin                 |        | NoÍ  |        |     |         |       |
-| intensity-projection-plugin               |        | No   |        |     |         |       |
-| montage-plugin                            |        | No   |        |     |         |       |
-| rolling-ball-plugin                       |        | No   |        |     |         |       |
-| stack-z-slice-plugin                      |        | No   |        |     |         |       |
-| recycle-vector-plugin                     |        | No   |        |     |         |       |
-| csv-merger-plugin                         |        | yes  |        |     |         |       |
-| generalized-linear-model-plugin           |        | no   |        |     |         |       |
-| tabular-thresholding-plugin               |        | yes  |        |     |         |       |
-| filepattern-generator-plugin              |        | yes  |        |     |         |       |
-| generic-to-image-collection-plugin        |        | no   |        |     |         |       |
-| notebook-plugin                           |        | no   |        |     |         |       |
-| stitching-vector-merger-plugin            |        | no   |        |     |         |       |
-| subset-data-plugin                        |        | no   |        |     |         |       |
-| color-pyramid-builder-plugin              |        | no   |        |     |         |       |
-| feature-heatmap-pyramid-plugin            |        | no   |        |     |         |       |
-| graph-pyramid-builder-plugin              |        | no   |        |     |         |       |
-| image-cluster-annotation-plugin           |        | no   |        |     |         |       |
-| precompute-slide-plugin                   |        | yes  |        |     |         |       |
-| precompute-volume-plugin                  |        | no   |        |     |         |       |
-| imagej-threshold-apply-plugin             |        | yes  |        |     |         |       |
-| imagej-threshold-huang-plugin             |        | yes  |        |     |         |       |
-| imagej-threshold-ij1-plugin               |        | yes  |        |     |         |       |
-| imagej-threshold-intermodes-plugin        |        | yes  |        |     |         |       |
-| imagej-threshold-isodata-plugin           |        | yes  |        |     |         |       |
-| imagej-threshold-li-plugin                |        | yes  |        |     |         |       |
-| imagej-threshold-maxentropy-plugin        |        | yes  |        |     |         |       |
-| imagej-threshold-maxlikelihood-plugin     |        | yes  |        |     |         |       |
-| imagej-threshold-mean-plugin              |        | yes  |        |     |         |       |
-| imagej-threshold-minerror-plugin          |        | yes  |        |     |         |       |
-| imagej-threshold-minimum-plugin           |        | yes  |        |     |         |       |
-| imagej-threshold-moments-plugin           |        | yes  |        |     |         |       |
-| imagej-threshold-otsu-plugin              |        | yes  |        |     |         |       |
-| imagej-threshold-percentile-plugin        |        | yes  |        |     |         |       |
-| imagej-threshold-renyientropy-plugin      |        | yes  |        |     |         |       |
-| imagej-threshold-rosin-plugin             |        | yes  |        |     |         |       |
-| imagej-threshold-shanbhag-plugin          |        | yes  |        |     |         |       |
-| imagej-threshold-triangle-plugin          |        | yes  |        |     |         |       |
-| imagej-threshold-yen-plugin               |        | yes  |        |     |         |       |
-| imagej-macro-plugin                       |        | yes  |        |     |         |       |
-| imagej-deconvolve-richardsonlucy-plugin   |        | yes  |        |     |         |       |
-| imagej-deconvolve-richardsonlucytv-plugin |        | yes  |        |     |         |       |
-| imagej-filter-addpoissonnoise-plugin      |        | yes  |        |     |         |       |
-| imagej-filter-convolve-plugin             |        | yes  |        |     |         |       |
-| imagej-filter-correlate-plugin            |        | yes  |        |     |         |       |
-| imagej-filter-derivativegauss-plugin      |        | yes  |        |     |         |       |
-| imagej-filter-dog-plugin                  |        | yes  |        |     |         |       |
-| imagej-filter-frangivesselness-plugin     |        | yes  |        |     |         |       |
-| imagej-filter-gauss-plugin                |        | yes  |        |     |         |       |
-| imagej-filter-partialderivative-plugin    |        | yes  |        |     |         |       |
-| imagej-filter-tubeness-plugin             |        | yes  |        |     |         |       |
-| imagej-image-integral-plugin              |        | yes  |        |     |         |       |
-| imagej-filter-sobel-plugin                |        | no   |        |     |         |       |
-| label-to-vector-plugin                    | yes    | no   | no     | no  |         | 2.1.9 |
-| vector-to-label-plugin                    | yes    | no   | no     | no  |         | 2.1.9 |
+* Add bump2version to every single plugin to manage plugin version numbers.
+* If at all possible, we need to remove exact pins of version numbers of packages for every python plugin. In general, use [semver notation](https://devhints.io/semver) for all requirements.
+* If a plugin requires `preadator`, it needs to be updated when the newer version of `preadator` comes out with bug fixes.
+* If a plugin relies on `filepattern`, we should restrict version numbers to `<2.0` in anticipation of the new release of `filepattern`. Once the update to `filepattern` lands, we can go back over our plugins and make the required updates.
+* If a plugin relies on a pre-1.0 version of a package, figure out how to properly handle versions of all involved packages to prevent breaks from updates in other packages like `bfio`.
+ 
+## binary-ops-plugin
 
-## Docker Build Errors:
+* Open PR to remove the duplicate of this plugin.
+* This plugin relies on `filepattern`.
 
-* tiledtiff-converter-plugin
-* bleed-through-estimation-plugin
-* aics-classic-seg-plugin
-* notebook-plugin
+## Problematic Plugins
 
-## Testing:
-
-* basic-flatfield-correction (Najib)
-* apply-flatfield (Najib)
-* smp-training (Hamdah)
-* ftl-label (Ben, Najib)
-* montage-plugin (Ben)
-* zo1-segmentation (Ben)
-* csv-merger-plugin (Nick)
-* csv-collection-merger (Nick)
-* imaris-parser-plugin
-* cell-nuclei-segmentation
-* image-registration-plugin
-* intensity-projection-plugin
-* stack-z-slice
-
-## Repo Creations:
-
-* fcs-to-csv-converter-plugin
-
-## Permissions:
-
-* feather-to-tabular-plugin
-* ome-zarr-converter-plugin
-* tabular-to-feather-plugin
-* imagej-threshold-intermodes-plugin
-* imagej-threshold-maxlikelihood-plugin
-* imagej-threshold-minerror-plugin
-* imagej-threshold-minimum-plugin
-* imagej-threshold-otsu-plugin
-* imagej-threshold-renyientropy-plugin
-* imagej-threshold-rosin-plugin
-* imagej-threshold-shanbhag-plugin
-* imagej-threshold-yen-plugin
-* imagej-deconvolve-richardsonlucy-plugin
-* imagej-filter-addpoissonnoise-plugin
-* imagej-image-integral-plugin
-
-## Notes
-
-The `cell-nuclei-segmentation-plugin` used to have a requirement:
-```
-https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow_cpu-2.1.0-cp37-cp37m-manylinux2010_x86_64.whl ; sys_platform == 'linux'
-```
+* features
+  * feature-evaluation
+    * Update `requirements.txt`. Particularly, `scikit-learn` from `0.24.2` to `1.x`
+  * feature-extraction
+    * update `bfio` from `2.0.4` to `2.1.9`.
+  * object-spectral-featurization
+    * This used to rely on `scikit-image==0.17.2` but I needed to change it to `scikit-image>=0.17.2`. Test the plugin to make sure that nothing broke.
+* formats
+  * czi-extract
+    * This relies on `preadator`.
+  * imaris-parser
+    * I had to update all packages in `requirements.txt` and to this should be tested for correctness.
+    * The main update will be with `pandas` going from `0.24.2` to `1.x`.
+    * We should also take a look at the dependency on `XlsxWriter`.
+  * multichannel-tiff
+    * This used to use `bfio==1.3.6` and will have bugs from breaking changes in `2.1.9`.
+  * ome-converter
+    * This relies on `preadator`
+  * tabular-to-feather
+    * This relies on `fcsparser==0.2.2` and `blake3==0.2.1`.
+  * tiledtiff-converter
+    * Container fails to build.
+    * This is a java plugin. Is this an obsolete plugin with `bfio` in the picture?
+* regression
+  * basic-flatfield-correction
+    * Test this plugin because it was updated to use `basicpy` and needs to be able to run on a GPU.
+    * Tests are underway (Najib)
+  * bleed-through-estimation
+    * Container fails to build. Investigate why. Probably because of inclusion of `bfio` in `requirements.txt`.
+    * Update the plugin with new features from the Theia paper and associated code.
+* segmentation
+  * aics-classic-seg
+    * Container fails to build. Probably because of the reliance, in `requirements.txt`, on a git commit hash from [the discontinued repo](https://github.com/AllenInstitute/aics-segmentation) from the Allen Institute.
+    * This used to use `bfio==1.3.6` and will have bugs from breaking changes in `2.1.9`.
+  * cell-nuclei-segmentation
+    * folder needs renaming to have the `plugin` postfix.
+    * This used to use `bfio==1.0.7` and will have bugs from breaking changes in `2.1.9`.
+    * This used to rely on a tensorflow wheel from a [google repo](https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow_cpu-2.1.0-cp37-cp37m-manylinux2010_x86_64.whl). Test this plugin in the `bfio:2.1.9-tensorflow` container.
+  * smp-training
+    * Tests are underway.
+    * Tests are underway (Najib)
+  * zo1-segmentation
+    * Get update from Ben about plugin status
+* transforms/images
+  * autocropping
+    * This plugin relies on `filepattern`.
+  * ftl-label
+    * Optimization is underway (Najib)
+  * image-registration
+    * The old container base image was `labshare/polus-bfio-util:2.4.2-slim-buster`. Test the plugin with the new `bfio` base container.
+    * This plugin relies on `filepattern`.
+  * intensity-projection
+    * This used to use `bfio==2.0.5` and will have probably bugs from breaking changes in `2.1.9`.
+  * roi-relabel
+    * This plugin needs a `VERSION` file.
+  * stack-z-slice
+    * This used to use `bfio==2.0.5` and will have probably bugs from breaking changes in `2.1.9`.
+    * This plugin relies on `filepattern`.
+* transforms/tabular
+  * csv-merger
+    * This plugin relies on `filepattern`.
+    * This relies on `blake3==0.2.1`.
+* utils
+  * filepattern-generator
+    * folder needs renaming to have the `polus` prefix.
+  * generic-to-image-collection
+    * This plugin relies on `filepattern`.
+  * imagej-macro
+    * Testing is underway (Ben)
+  * notebook
+    * Container fails to build
+  * subset-data
+    * This plugin relies on `filepattern`.
+* visualization
+  * color-pyramid-builder
+    * The old container base image was `labshare/polus-bfio-util:2.4.4-slim-buster`. Test the plugin with the new `bfio` base container.
+  * feature-heatmap-pyramid
+    * This used to use `bfio==1.3.6` and will have bugs from breaking changes in `2.1.9`.
+  * graph-pyramid-builder
+    * This plugin relied on `pandas==0.25.1` and the current version is `1.x`.
+  * precompute-slide
+    * This relies on `preadator` and `filepattern`.
+  * precompute-volume
+    * There are lots of issues with the requirements listed.
